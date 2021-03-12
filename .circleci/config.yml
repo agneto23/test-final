@@ -20,3 +20,14 @@ jobs:
       - run:
           name: Run test
           command: npm run-script test
+
+workflows:
+  version: 2.1
+  to_google:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - develop
+                - main
