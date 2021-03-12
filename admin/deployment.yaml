@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-final
+  labels:
+    app: test-deploy
+spec:
+  selector:
+    matchLabels:
+      app: test-deploy
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: test-deploy
+        tier: backend
+    spec:
+      containers:
+        - image: us-central1-docker.pkg.dev/winter-cogency-307316/test-registry/test:1.0.0
+          name: test
+          ports:
+            - containerPort: 3000
+              name: test-deploy
