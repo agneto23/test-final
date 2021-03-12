@@ -19,6 +19,8 @@ export class IndexController extends Controller {
     }
 
     @Post('DevOps')
+    @Security("api_key")
+    @Security("jwt")
     public async create(@Body() request: MessageVO) {
         return this.messageService.greetings(request.to);
     }
