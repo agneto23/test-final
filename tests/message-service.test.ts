@@ -2,7 +2,6 @@ const expect = require("chai").expect;
 import {MessageService} from "../src/service/message-service"
 
 
-
 describe("Message service test", function () {
 
     it("should be return a message", function (done) {
@@ -12,7 +11,7 @@ describe("Message service test", function () {
 
         const service = {message: "Hello Juan Perez your message will be send"}
 
-        expect(messageService.greetings(name).name).to.equal(service.message);
+        expect(messageService.greetings(name).message).to.equal(service.message);
         done();
     });
 
