@@ -5,11 +5,18 @@ dotenv.config();
 
 export class TokenService {
 
+    private tokenSecret;
+
     constructor() {
+        this.tokenSecret = process.env.TOKEN_SECRET
     }
 
-    public generateAccessToken(token) {
+    public generateAccessToken(username: {username: string}) {
+        const token = jwt.sign(username, this.tokenSecret, { expiresIn: '1800s' });
         return {token}
     }
 
+    public setTokenSecret(value: string){
+        this.tokenSecret = value
+    }
 }

@@ -1,5 +1,6 @@
 import { Controller, Get, Route, Post, Body, Security } from 'tsoa';
 import { MessageService } from '../service/message-service'
+import { TokenService } from '../service/token-service'
 import {MessageVO} from "../vo/message";
 
 
@@ -7,10 +8,13 @@ import {MessageVO} from "../vo/message";
 export class IndexController extends Controller {
 
     private messageService;
+    private tokenService;
+
 
     constructor() {
         super();
         this.messageService = new MessageService();
+        this.tokenService = new TokenService();
     }
 
     @Get('')
@@ -23,6 +27,11 @@ export class IndexController extends Controller {
     @Security("jwt")
     public async create(@Body() request: MessageVO) {
         return this.messageService.greetings(request.to);
+    }
+
+    @Get('/token')
+    public async token() {
+        return this.tokenService.generateAccessToken({username: `user`});
     }
 
 
