@@ -1,5 +1,25 @@
 # Test Final Devops
 
+## Local
+
+Para ejecutar el proyecto en un ambiente local tener en cuenta lo siguiente:
+1. Colocarse en la ruta del proyecto
+1. Instalar dependencias `npm install`
+2. Generar minified/concatenated del proyecto `npm run build:all`
+4.  Ejecutar tests `npm run test`
+5. Ejecutar server local `npm run server`
+
+## Local con Docker
+
+Para ejecutar el proyecto en un ambiente local dockerizado tener en cuenta lo siguiente:
+1. Colocarse en la ruta del proyecto
+1. Contruir imagen docker `docker build -t test:1.0.0 -f Dockerfile .`
+2. Ejecutar contededor `docker run -p 3000:3000 test:1.0.0`
+
+## Internet
+
+La ip asignada al Load Balancer creado en google cloud es: http://35.226.59.235
+
 ## Prueba CURL
 
 ### Request
