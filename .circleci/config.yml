@@ -18,5 +18,5 @@ jobs:
             npm install -f -d --quiet --loglevel=warn
       # Step 3: run linter and tests
       - run:
-          name: Run tests
+          name: Run test
           command: npm run-script test
