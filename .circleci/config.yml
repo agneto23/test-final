@@ -18,8 +18,18 @@ jobs:
             npm install -f -d --quiet --loglevel=warn
       # Step 3: run linter and tests
       - run:
-          name: Run test
+          name: Run tests
           command: npm run-script test
+  deploy:
+    docker:
+      - image: wecs/circle-ci-gcloud-node:0.1.0
+    working_directory: ~/app
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Deploy
+          command: ./deployment.sh
 
 workflows:
   version: 2.1
@@ -31,3 +41,9 @@ workflows:
               only:
                 - develop
                 - main
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: main
